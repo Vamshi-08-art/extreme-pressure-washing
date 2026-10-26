@@ -188,6 +188,25 @@ export default function Header() {
               </svg>
               <span>803-833-0988</span>
             </a>
+
+            <div className="top-bar-item top-bar-hours">
+              <svg
+                className="top-bar-icon"
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              <span>Open 24/7</span>
+            </div>
           </div>
 
           {/* Social placeholder (hidden on mobile) */}

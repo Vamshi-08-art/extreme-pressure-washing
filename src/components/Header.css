@@ -615,7 +615,11 @@
 @media (max-width: 1023px) {
   /* Row 1: Mobile rules */
   .top-bar-hours {
-    display: none;
+    display: inline-flex;
+  }
+
+  .top-bar-left {
+    gap: clamp(0.75rem, 3vw, 1.25rem);
   }
 
   .top-bar-right {

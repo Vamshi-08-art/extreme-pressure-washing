@@ -7,7 +7,7 @@ import './Statistics.css';
  * - 100+ Google Reviews
  * - 5.0 Overall Rating
  * - 1,000+ Homes Cleaned
- * - Founded in 2018
+ * - Founded in 2015
  */
 const STATS_DATA = [
   {
@@ -20,7 +20,7 @@ const STATS_DATA = [
     id: 'overall-rating',
     value: '5.0 ★',
     label: 'Overall Rating',
-    accent: true,
+    accent: false,
   },
   {
     id: 'homes-cleaned',
@@ -30,7 +30,7 @@ const STATS_DATA = [
   },
   {
     id: 'established',
-    value: '2018',
+    value: '2015',
     label: 'Founded in',
     accent: false,
   },

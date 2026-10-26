@@ -22,17 +22,17 @@
 }
 
 /* ==========================================================================
-   Central Section Header
+   Central Section Header (+20% size increase, responsive)
    ========================================================================== */
 
 .testimonials-header {
   text-align: center;
-  max-width: 720px;
+  max-width: 820px;
   margin: 0 auto clamp(2.5rem, 5vh, 4rem) auto;
 }
 
 .testimonials-title {
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(2.4rem, 4.8vw, 3.3rem);
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -41,7 +41,7 @@
 }
 
 /* ==========================================================================
-   Carousel Shell with Flanking Circular Arrows
+   Carousel Shell with Floating Circular Navigation Arrows
    ========================================================================== */
 
 .testimonials-carousel-shell {
@@ -53,12 +53,12 @@
   align-items: center;
 }
 
-/* Circular Navigation Arrows */
+/* Circular Navigation Arrows (z-index: 20 sits above edge gradients & traveling cards) */
 .carousel-nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
+  z-index: 20;
   width: 48px;
   height: 48px;
   border-radius: var(--radius-full);
@@ -69,7 +69,7 @@
   border: 1px solid var(--testimonials-arrow-border);
   color: var(--testimonials-arrow-color);
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
   transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
   flex-shrink: 0;
 }
@@ -77,7 +77,7 @@
 .carousel-nav-btn:hover {
   transform: translateY(-50%) scale(1.08);
   border-color: #4cbbe7;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.32);
 }
 
 .carousel-nav-btn:active {
@@ -90,15 +90,16 @@
 }
 
 .prev-arrow {
-  left: 8px;
+  left: 14px;
 }
 
 .next-arrow {
-  right: 8px;
+  right: 14px;
 }
 
 /* ==========================================================================
    Carousel Viewport & Edge Gradient Fades
+   Cards travel underneath arrows and fade into the extreme edge gradients
    ========================================================================== */
 
 .carousel-viewport {
@@ -107,17 +108,18 @@
   width: 100%;
   padding: 14px 0;
   border-radius: var(--radius-md);
+  z-index: 2;
 }
 
-/* Gradient fades at left and right edges */
+/* Subtle gradient fades at the extreme outer left and right edges (z-index: 10) */
 .carousel-viewport::before,
 .carousel-viewport::after {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
-  width: clamp(48px, 8vw, 110px);
-  z-index: 4;
+  width: clamp(48px, 6vw, 84px);
+  z-index: 10;
   pointer-events: none;
 }
 
@@ -159,7 +161,7 @@
    Base Review Card Appearance & Hierarchy (Desktop / Default)
    Order:
    1. Five gold star icons
-   2. Full review text (unquoted, non-italic, unclipped)
+   2. Full review text (unquoted, non-italic, unclipped) (+10% font size)
    3. Thin horizontal divider
    4. Reviewer name aligned left
    ========================================================================== */
@@ -197,7 +199,7 @@
   fill: currentColor;
 }
 
-/* 2. Review Body */
+/* 2. Review Body (+10% font size: 1.03125rem / ~16.5px) */
 .review-body {
   flex: 1 1 auto;
   display: flex;
@@ -205,8 +207,15 @@
   margin-bottom: 1.25rem;
 }
 
+.review-heading {
+  font-size: 1.03125rem;
+  font-weight: 700;
+  color: var(--testimonials-title-color);
+  margin-bottom: 0.35rem;
+}
+
 .review-text {
-  font-size: 0.9375rem;
+  font-size: 1.03125rem;
   line-height: 1.68;
   color: var(--testimonials-text);
   font-style: normal;
@@ -224,7 +233,7 @@
   margin-bottom: 1rem;
 }
 
-/* 4. Reviewer Name Aligned Left */
+/* 4. Reviewer Name Aligned Left (Unchanged) */
 .review-author {
   display: flex;
   align-items: center;
@@ -298,11 +307,13 @@
 
 /* ==========================================================================
    Desktop Typography Scaling (min-width: 1024px)
+   - Title: +20% -> clamp(2.52rem, 3.48vw, 3.48rem)
+   - Review text: +10% -> 1.04rem
    ========================================================================== */
 
 @media (min-width: 1024px) {
   .testimonials-title {
-    font-size: clamp(2.1rem, 2.9vw, 2.9rem);
+    font-size: clamp(2.52rem, 3.48vw, 3.48rem);
     font-weight: 800;
   }
 
@@ -310,8 +321,12 @@
     padding: 1.75rem;
   }
 
+  .review-heading {
+    font-size: 1.04rem;
+  }
+
   .review-text {
-    font-size: 0.945rem;
+    font-size: 1.04rem;
     line-height: 1.65;
   }
 
@@ -327,7 +342,11 @@
 
 /* ==========================================================================
    Mobile Breakpoint (max-width: 768px)
-   DECLARED AFTER ALL BASE & DESKTOP STYLES TO GUARANTEE CASCADE SPECIFICITY
+   - Title: +20% -> clamp(1.62rem, 6.6vw, 2.1rem)
+   - Review text: +10% -> 0.75625rem (~12.1px)
+   - Arrows: z-index 20 floating at left: 8px & right: 8px
+   - Viewport: full width (width: 100%) so cards travel underneath arrows
+   - Gradients: z-index 10 at extreme edges (left: 0 & right: 0)
    ========================================================================== */
 
 @media (max-width: 768px) {
@@ -342,9 +361,9 @@
     text-align: center;
   }
 
-  /* Centered section heading */
+  /* Centered section heading (+20% size increase, responsive) */
   .testimonials-title {
-    font-size: clamp(1.35rem, 5.5vw, 1.75rem) !important;
+    font-size: clamp(1.62rem, 6.6vw, 2.1rem) !important;
     line-height: 1.25 !important;
     text-align: center;
   }
@@ -358,25 +377,26 @@
     padding: 0;
   }
 
-  /* Exactly fits between flanking circular buttons with balanced margins */
+  /* Full width viewport so cards travel underneath the arrow positions */
   .carousel-viewport {
-    width: calc(100% - 72px);
-    margin: 0 auto;
+    width: 100% !important;
+    margin: 0;
     overflow: hidden;
     padding: 8px 0;
     position: relative;
     border-radius: var(--radius-md);
+    z-index: 2;
   }
 
-  /* Soft, subtle gradient fades along the left and right edges */
+  /* Soft, subtle gradient fades at the extreme outer edges (z-index: 10, behind arrows) */
   .carousel-viewport::before,
   .carousel-viewport::after {
     content: '';
     position: absolute;
     top: 0;
     bottom: 0;
-    width: clamp(14px, 4.5vw, 20px);
-    z-index: 4;
+    width: clamp(24px, 7vw, 42px);
+    z-index: 10;
     pointer-events: none;
     display: block !important;
   }
@@ -401,23 +421,23 @@
   /* Exactly one complete review card at a time on mobile with identical dimensions */
   .review-card-item {
     box-sizing: border-box !important;
-    padding: 0 4px !important;
+    padding: 0 8px !important;
     height: 100% !important;
     display: flex !important;
     align-items: stretch !important;
     justify-content: center !important;
-    width: calc(100vw - 88px);
-    min-width: calc(100vw - 88px);
-    max-width: calc(100vw - 88px);
-    flex: 0 0 calc(100vw - 88px);
+    width: 100vw;
+    min-width: 100vw;
+    max-width: 100vw;
+    flex: 0 0 100vw;
   }
 
   /* Uniform, compact, complete review card - strictly identical dimensions on mobile */
   .testimonials-section .review-card,
   .review-card {
-    height: 365px !important;
-    min-height: 365px !important;
-    max-height: 365px !important;
+    height: 380px !important;
+    min-height: 380px !important;
+    max-height: 380px !important;
     width: 100% !important;
     min-width: 100% !important;
     max-width: 100% !important;
@@ -449,7 +469,7 @@
     height: 14px !important;
   }
 
-  /* 2. Complete review text in middle (never truncated or clipped) */
+  /* 2. Complete review text in middle (+10% font size: 0.75625rem / ~12.1px) */
   .testimonials-section .review-body,
   .review-body {
     flex: 1 1 auto !important;
@@ -460,11 +480,19 @@
     overflow: visible !important;
   }
 
-  /* Exact mobile review text font size: 11px / 0.6875rem with line-height ~1.45 */
+  .testimonials-section .review-card .review-heading,
+  .review-card .review-heading,
+  .review-heading {
+    font-size: 0.8125rem !important;
+    font-weight: 700 !important;
+    color: var(--testimonials-title-color) !important;
+    margin-bottom: 0.25rem !important;
+  }
+
   .testimonials-section .review-card .review-text,
   .review-card .review-text,
   .review-text {
-    font-size: 0.6875rem !important; /* Exactly 11px at standard 16px root */
+    font-size: 0.75625rem !important; /* ~12.1px (+10% from 11px) */
     line-height: 1.45 !important;
     color: var(--testimonials-text) !important;
     margin: 0 !important;
@@ -486,7 +514,7 @@
     flex-shrink: 0 !important;
   }
 
-  /* 4. Reviewer name near bottom */
+  /* 4. Reviewer name near bottom (Unchanged) */
   .testimonials-section .review-author,
   .review-author {
     display: flex !important;
@@ -497,30 +525,31 @@
 
   .testimonials-section .review-author-name,
   .review-author-name {
-    font-size: 0.8125rem !important; /* 13px */
+    font-size: 0.8125rem !important;
     font-weight: 700 !important;
     color: var(--testimonials-name) !important;
     letter-spacing: 0.01em !important;
     line-height: 1.2 !important;
   }
 
-  /* Flanking circular navigation arrows */
+  /* Floating circular navigation arrows (z-index: 20 sits above edge gradients & traveling cards) */
   .carousel-nav-btn {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     background-color: var(--testimonials-arrow-bg);
     border: 1px solid var(--testimonials-arrow-border);
     color: var(--testimonials-arrow-color);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
     border-radius: 50%;
+    z-index: 20;
   }
 
   .prev-arrow {
-    left: 0;
+    left: 8px;
   }
 
   .next-arrow {
-    right: 0;
+    right: 8px;
   }
 }
 

@@ -161,6 +161,28 @@
   outline-offset: 2px;
 }
 
+.footer-email-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #FFFFFF;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+.footer-email-link:hover {
+  color: #4cbbe7;
+}
+
+.footer-email-link:focus-visible {
+  outline: 2px solid #4cbbe7;
+  outline-offset: 2px;
+}
+
 .footer-location-item {
   display: inline-flex;
   align-items: center;

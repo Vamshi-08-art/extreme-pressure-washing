@@ -70,7 +70,7 @@ export default function Testimonials() {
     if (typeof window !== 'undefined' && window.innerWidth <= 768) {
       const isNarrow = window.innerWidth <= 480;
       const containerPad = isNarrow ? 16 : 24;
-      return Math.max(200, window.innerWidth - containerPad - 72);
+      return Math.max(200, window.innerWidth - containerPad);
     }
     return 0;
   });
