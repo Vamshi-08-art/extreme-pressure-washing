@@ -1,0 +1,28 @@
+/* ==========================================================================
+   Global App Layout Styles (App.css)
+   ========================================================================== */
+
+.site-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-x: clip;
+}
+
+#main-content {
+  flex: 1;
+  width: 100%;
+}
+
+/* Ensure smooth scrolling for in-page anchors */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Accounts for fixed/sticky header */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

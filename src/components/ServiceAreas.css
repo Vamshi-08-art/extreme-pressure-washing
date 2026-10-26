@@ -1,0 +1,423 @@
+/* ==========================================================================
+   Service Areas Component Styles (src/components/ServiceAreas.css)
+   ========================================================================== */
+
+.service-areas-section {
+  padding: clamp(4rem, 8vh, 6rem) 0;
+  background-color: var(--color-bg-page);
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.25s ease;
+}
+
+/* ==========================================================================
+   Desktop Grid Layout (2-Column)
+   ========================================================================== */
+
+.service-areas-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  grid-template-rows: auto auto;
+  column-gap: var(--space-3xl);
+  row-gap: var(--space-lg);
+  align-items: center;
+}
+
+.service-areas-intro {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-areas-title {
+  font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+  color: var(--color-text-primary);
+}
+
+.service-areas-description {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.service-areas-content-col {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Locations List */
+.locations-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.location-item {
+  margin: 0;
+}
+
+.location-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.15rem;
+  background-color: var(--color-bg-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, color 0.2s ease;
+  cursor: pointer;
+}
+
+.location-link:hover,
+.location-link.is-active {
+  background-color: var(--color-bg-subtle);
+  border-color: var(--color-interactive);
+  color: var(--color-interactive);
+  transform: translateX(4px);
+}
+
+.location-link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.location-pin-icon {
+  color: var(--color-interactive);
+  display: flex;
+  align-items: center;
+  margin-right: var(--space-sm);
+}
+
+.location-name {
+  flex-grow: 1;
+}
+
+.location-arrow {
+  color: var(--color-text-muted);
+  font-size: 1.125rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.location-link:hover .location-arrow,
+.location-link.is-active .location-arrow {
+  transform: translateX(4px);
+  color: var(--color-interactive);
+}
+
+/* CTA */
+.btn-areas-quote {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-md);
+  background-color: var(--color-interactive);
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-areas-quote:hover {
+  background-color: var(--color-interactive-hover);
+  transform: translateY(-2px);
+}
+
+.btn-areas-quote:focus-visible {
+  outline: 3px solid #4cbbe7;
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Right Column: Interactive Leaflet Map Card
+   ========================================================================== */
+
+.service-areas-map-col {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  width: 100%;
+}
+
+.map-preview-card {
+  background-color: var(--color-bg-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Map Control Bar: Layer Switcher (Map vs Satellite) */
+.map-control-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.6rem 0.85rem;
+  background-color: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.map-layer-toggle {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--color-bg-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 3px;
+  gap: 3px;
+}
+
+.map-layer-btn {
+  padding: 0.35rem 0.85rem;
+  font-family: var(--font-heading, var(--font-sans));
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.map-layer-btn:hover {
+  color: var(--color-text-primary);
+}
+
+.map-layer-btn.is-active {
+  background-color: var(--color-interactive);
+  color: #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.map-layer-btn:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+}
+
+/* Map Viewport */
+.map-viewport-wrapper {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background-color: var(--color-bg-surface);
+}
+
+.interactive-map-container {
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+/* ==========================================================================
+   Leaflet Custom Markers & Popups
+   ========================================================================== */
+
+.custom-leaflet-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.custom-map-marker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.custom-map-marker:hover {
+  transform: scale(1.25);
+}
+
+.marker-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.45));
+}
+
+.primary-marker .marker-pin svg {
+  filter: drop-shadow(0 0 6px rgba(76, 187, 231, 0.8));
+}
+
+.marker-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(76, 187, 231, 0.35);
+  animation: markerPulseAnim 2s infinite ease-out;
+  pointer-events: none;
+}
+
+@keyframes markerPulseAnim {
+  0% {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Leaflet Popup Styling */
+.custom-leaflet-popup .leaflet-popup-content-wrapper {
+  background: #1f2630 !important;
+  color: #FFFFFF !important;
+  border-radius: var(--radius-md) !important;
+  padding: 0.25rem !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.custom-leaflet-popup .leaflet-popup-tip {
+  background: #1f2630 !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+.custom-leaflet-popup .leaflet-popup-content {
+  margin: 0.75rem 1rem !important;
+  line-height: 1.4 !important;
+}
+
+.map-info-popup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.popup-badge {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  background-color: #0A8CBF;
+  color: #FFFFFF;
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+.popup-tagline {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 0.4rem 0;
+}
+
+.popup-map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #4cbbe7 !important;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.popup-map-link:hover {
+  color: #9BEAF2 !important;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .service-areas-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: var(--space-xl);
+  }
+
+  .service-areas-intro {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .service-areas-map-col {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .service-areas-content-col {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .map-viewport-wrapper {
+    height: 360px;
+  }
+}
+
+@media (max-width: 560px) {
+  .location-link {
+    font-size: 0.875rem;
+    padding: 0.75rem 0.85rem;
+  }
+
+  .btn-areas-quote {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .map-viewport-wrapper {
+    height: 300px;
+  }
+}
+
+/* Desktop typography & spacing scaling (Reduced ~10%) */
+@media (min-width: 1024px) {
+  .service-areas-title {
+    font-size: clamp(2.25rem, 3.15vw, 3.15rem);
+    line-height: 1.15;
+  }
+
+  .service-areas-description {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+
+  .location-name {
+    font-size: 1.035rem;
+  }
+
+  .btn-areas-quote {
+    font-size: 1.0125rem;
+    padding: 1rem 2.25rem;
+  }
+}

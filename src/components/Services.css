@@ -1,0 +1,252 @@
+/* ==========================================================================
+   Services Component Styles (src/components/Services.css)
+   ========================================================================== */
+
+.services-section {
+  padding: clamp(4rem, 8vh, 6rem) 0;
+  background-color: var(--color-bg-page);
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.25s ease;
+}
+
+.services-header {
+  max-width: 760px;
+  margin-bottom: var(--space-2xl);
+  text-align: left;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-eyebrow);
+  margin-bottom: var(--space-xs);
+}
+
+.services-title {
+  font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: var(--space-md);
+  color: var(--color-text-primary);
+}
+
+.services-description {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+}
+
+/* 9 Cards Grid: 3 cols on desktop, 2 on mobile */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.service-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  aspect-ratio: 16 / 11;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  background-color: var(--brand-navy);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.service-card:hover,
+.service-card:focus-visible,
+.service-card.touch-active {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg), 0 0 0 2px var(--color-interactive);
+  border-color: var(--color-interactive);
+}
+
+.service-card:focus-visible {
+  outline: 3px solid #4cbbe7;
+  outline-offset: 3px;
+}
+
+/* Background image & gradient overlay */
+.service-card-image-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.service-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.service-card:hover .service-card-img,
+.service-card.touch-active .service-card-img {
+  transform: scale(1.05);
+}
+
+.service-card-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(1, 35, 64, 0.94) 0%,
+    rgba(1, 35, 64, 0.72) 40%,
+    rgba(1, 35, 64, 0.2) 75%,
+    rgba(1, 35, 64, 0.05) 100%
+  );
+  transition: background 0.3s ease;
+}
+
+.service-card:hover .service-card-gradient,
+.service-card.touch-active .service-card-gradient {
+  background: linear-gradient(
+    to top,
+    rgba(1, 35, 64, 0.98) 0%,
+    rgba(1, 35, 64, 0.88) 55%,
+    rgba(1, 35, 64, 0.4) 85%,
+    rgba(1, 35, 64, 0.15) 100%
+  );
+}
+
+/* Content layer */
+.service-card-content {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-md) var(--space-lg);
+  color: #FFFFFF;
+}
+
+.service-card-title-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+.service-card-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.service-card-text {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  /* On desktop: initially collapsed / revealed smoothly on hover */
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(6px);
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Desktop hover & keyboard focus */
+.service-card:hover .service-card-text,
+.service-card:focus-visible .service-card-text,
+.service-card.touch-active .service-card-text {
+  max-height: 100px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+/* Tablet & Mobile (< 1024px): 2 columns */
+@media (max-width: 1023px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  .service-card {
+    aspect-ratio: 16 / 12;
+  }
+
+  .service-card-title {
+    font-size: 1rem;
+  }
+
+  .service-card-content {
+    padding: var(--space-sm) var(--space-md);
+  }
+}
+
+/* Small mobile (< 560px): keep 2 columns per requirement, clean distinct card spacing */
+@media (max-width: 559px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(0.75rem, 3vw, 0.875rem);
+  }
+
+  .service-card {
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius-md);
+  }
+
+  .service-card-content {
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .service-card-title {
+    font-size: 0.8125rem;
+  }
+
+  .service-card-text {
+    font-size: 0.75rem;
+  }
+}
+
+/* Desktop typography & spacing scaling (Reduced ~10%) */
+@media (min-width: 1024px) {
+  .services-title {
+    font-size: clamp(2.25rem, 3.15vw, 3.15rem);
+    line-height: 1.15;
+  }
+
+  .services-description {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    max-width: 880px;
+  }
+
+  .service-card-title {
+    font-size: 1.215rem;
+  }
+
+  .service-card-text {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .service-card,
+  .service-card-img,
+  .service-card-text,
+  .service-card-gradient {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+

@@ -1,0 +1,187 @@
+/* ==========================================================================
+   Quote CTA Component Styles (src/components/QuoteCTA.css)
+   ========================================================================== */
+
+.quote-cta-section {
+  position: relative;
+  width: 100%;
+  background-color: #1f2630; /* Fixed brand surface in both light and dark modes */
+  background-image:
+    linear-gradient(
+      rgba(31, 38, 48, 0.93),
+      rgba(31, 38, 48, 0.93)
+    ),
+    url('/images/quote-section-background.jpg');
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.quote-cta-overlay {
+  padding: clamp(5rem, 10vh, 7rem) 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quote-cta-content {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.quote-cta-eyebrow {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4cbbe7 !important;
+  margin-bottom: var(--space-xs);
+}
+
+.quote-cta-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: #FFFFFF;
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-md);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.quote-cta-description {
+  font-size: clamp(1.0625rem, 2vw, 1.1875rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: var(--space-2xl);
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.quote-cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.btn-quote-estimate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 0.95rem 2.25rem;
+  border-radius: var(--radius-md);
+  background-color: var(--color-interactive);
+  color: #FFFFFF;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(10, 140, 191, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn-quote-estimate:hover {
+  background-color: var(--color-interactive-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(10, 140, 191, 0.55);
+}
+
+.btn-quote-estimate:focus-visible {
+  outline: 3px solid #4cbbe7;
+  outline-offset: 3px;
+}
+
+.estimate-arrow-icon {
+  transition: transform 0.2s ease;
+}
+
+.btn-quote-estimate:hover .estimate-arrow-icon {
+  transform: translateX(4px);
+}
+
+.btn-quote-phone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 0.95rem 1.75rem;
+  border-radius: var(--radius-md);
+  background-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-quote-phone:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  border-color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.btn-quote-phone:focus-visible {
+  outline: 3px solid #4cbbe7;
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 560px) {
+  .quote-cta-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-quote-estimate,
+  .btn-quote-phone {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .btn-quote-estimate,
+  .btn-quote-phone,
+  .estimate-arrow-icon {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Desktop typography & spacing scaling (Reduced ~10%) */
+@media (min-width: 1024px) {
+  .quote-cta-content {
+    max-width: 900px;
+  }
+
+  .quote-cta-title {
+    font-size: clamp(2.475rem, 3.6vw, 3.375rem);
+    line-height: 1.15;
+  }
+
+  .quote-cta-description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    max-width: 760px;
+  }
+
+  .btn-quote-estimate,
+  .btn-quote-phone {
+    font-size: 1.0125rem;
+    padding: 1.05rem 2.5rem;
+    min-height: 54px;
+  }
+}

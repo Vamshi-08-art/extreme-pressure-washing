@@ -1,0 +1,462 @@
+/* ==========================================================================
+   Design System Tokens & Root Variables
+   ========================================================================== */
+
+:root {
+  /* Brand Palette (Static Brand Reference Colors) */
+  --brand-primary: #0A8CBF;   /* Primary Blue */
+  --brand-navy: #012340;      /* Deep Navy */
+  --brand-cyan: #9BEAF2;      /* Light Cyan */
+  --accent-blue-light: #006080; /* Light Mode Accent & Eyebrows */
+  --accent-blue-dark: #4cbbe7;  /* Dark Mode Accent & Eyebrows */
+  --accent-line: #45b4e666;     /* Decorative Lines & Underlines */
+
+  /* Spacing Scale */
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  --space-3xl: 4rem;     /* 64px */
+
+  /* Layout & Geometry (Modern edge-to-edge container with small consistent gutters) */
+  --container-max-width: 1640px;
+  --radius-sm: 4.3px;
+  --radius-md: 8.6px;
+  --radius-lg: 12.8px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-heading: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+/* ==========================================================================
+   Light Theme (Default)
+   ========================================================================== */
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* Backgrounds & Surfaces */
+  --color-bg-page: #FFFFFF;
+  --color-bg-surface: #F8FAFC;
+  --color-bg-surface-elevated: #FFFFFF;
+  --color-bg-subtle: #EBF8FA;  /* Gentle tint of light cyan */
+
+  /* Text & Foreground */
+  --color-text-primary: #012340;    /* Deep navy for AAA contrast */
+  --color-text-secondary: #334E68;  /* Slate navy for AA compliant secondary text */
+  --color-text-muted: #627D98;
+
+  /* Interactive Elements */
+  --color-interactive: #0A8CBF;
+  --color-interactive-hover: #086F97;
+  --color-interactive-text: #FFFFFF;
+
+  /* Accents */
+  --color-accent: #006080;
+  --color-accent-text: #FFFFFF;
+  --color-eyebrow: #006080; /* Section labels in light theme: #006080 */
+  --color-accent-line: #45b4e666;
+
+  /* Borders & Shadows */
+  --color-border: #D9E2EC;
+  --color-border-subtle: #F0F4F8;
+  --shadow-sm: 0 1px 2px rgba(1, 35, 64, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(1, 35, 64, 0.08), 0 2px 4px -2px rgba(1, 35, 64, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(1, 35, 64, 0.1), 0 4px 6px -4px rgba(1, 35, 64, 0.05);
+
+  /* Focus Indicator (WCAG 2.2 compliant outline) */
+  --color-focus: #0A8CBF;
+
+  /* Testimonial Section Tokens (Light Theme: warm off-white, white cards, dark charcoal text) */
+  --testimonials-bg: #F9F9F7;
+  --testimonials-title-color: #012340;
+  --testimonials-card-bg: #FFFFFF;
+  --testimonials-card-border: #E5E7EB;
+  --testimonials-text: #2D3748;
+  --testimonials-name: #1A202C;
+  --testimonials-divider: #E5E7EB;
+  --testimonials-arrow-bg: #FFFFFF;
+  --testimonials-arrow-border: #E5E7EB;
+  --testimonials-arrow-color: #1f2630;
+  --testimonials-cta-bg: #FFFFFF;
+  --testimonials-cta-border: #E5E7EB;
+  --testimonials-cta-text: #012340;
+}
+
+/* ==========================================================================
+   Dark Theme (Default via OS preference when no explicit theme is set)
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    /* Backgrounds & Surfaces (Modern #1A1A1A base with refined depth) */
+    --color-bg-page: #1A1A1A;             /* Principal dark page background */
+    --color-bg-surface: #222222;          /* Alternating section background */
+    --color-bg-surface-elevated: #2A2A2A; /* Elevated cards and dropdown panels */
+    --color-bg-subtle: rgba(10, 140, 191, 0.12); /* Subtle brand blue tint */
+
+    /* Text & Foreground */
+    --color-text-primary: #F5F5F5;      /* High-contrast crisp white */
+    --color-text-secondary: #B8B8B8;    /* Readable neutral slate */
+    --color-text-muted: #888888;
+
+    /* Interactive Elements */
+    --color-interactive: #0A8CBF;
+    --color-interactive-hover: #38B6E6;
+    --color-interactive-text: #FFFFFF;
+
+    /* Accents */
+    --color-accent: #4cbbe7;
+    --color-accent-text: #012340;
+    --color-eyebrow: #4cbbe7; /* Section labels in dark theme: #4cbbe7 */
+    --color-accent-line: #45b4e666;
+
+    /* Borders & Shadows */
+    --color-border: #383838;
+    --color-border-subtle: #2D2D2D;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 8px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 12px 20px -3px rgba(0, 0, 0, 0.6), 0 4px 8px -4px rgba(0, 0, 0, 0.45);
+
+    /* Focus Indicator */
+    --color-focus: #4cbbe7;
+
+    /* Testimonial Section Tokens (Dark Theme: deep charcoal green-tinted, muted green cards) */
+    --testimonials-bg: #141C18;
+    --testimonials-title-color: #F3F4F6;
+    --testimonials-card-bg: #1E2823;
+    --testimonials-card-border: #2B3831;
+    --testimonials-text: #C5CECA;
+    --testimonials-name: #F3F4F6;
+    --testimonials-divider: rgba(255, 255, 255, 0.08);
+    --testimonials-arrow-bg: #1E2823;
+    --testimonials-arrow-border: #2B3831;
+    --testimonials-arrow-color: #F3F4F6;
+    --testimonials-cta-bg: #1E2823;
+    --testimonials-cta-border: #2B3831;
+    --testimonials-cta-text: #F3F4F6;
+  }
+}
+
+/* Explicit Dark Theme override when user chooses 'dark' */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Backgrounds & Surfaces (Modern #1A1A1A base with refined depth) */
+  --color-bg-page: #1A1A1A;
+  --color-bg-surface: #222222;
+  --color-bg-surface-elevated: #2A2A2A;
+  --color-bg-subtle: rgba(10, 140, 191, 0.12);
+
+  /* Text & Foreground */
+  --color-text-primary: #F5F5F5;
+  --color-text-secondary: #B8B8B8;
+  --color-text-muted: #888888;
+
+  /* Interactive Elements */
+  --color-interactive: #0A8CBF;
+  --color-interactive-hover: #38B6E6;
+  --color-interactive-text: #FFFFFF;
+
+  /* Accents */
+  --color-accent: #4cbbe7;
+  --color-accent-text: #012340;
+  --color-eyebrow: #4cbbe7; /* Section labels in dark theme: #4cbbe7 */
+  --color-accent-line: #45b4e666;
+
+  /* Borders & Shadows */
+  --color-border: #383838;
+  --color-border-subtle: #2D2D2D;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 8px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 20px -3px rgba(0, 0, 0, 0.6), 0 4px 8px -4px rgba(0, 0, 0, 0.45);
+
+  /* Focus Indicator */
+  --color-focus: #4cbbe7;
+
+  /* Testimonial Section Tokens (Dark Theme: deep charcoal green-tinted, muted green cards) */
+  --testimonials-bg: #141C18;
+  --testimonials-title-color: #F3F4F6;
+  --testimonials-card-bg: #1E2823;
+  --testimonials-card-border: #2B3831;
+  --testimonials-text: #C5CECA;
+  --testimonials-name: #F3F4F6;
+  --testimonials-divider: rgba(255, 255, 255, 0.08);
+  --testimonials-arrow-bg: #1E2823;
+  --testimonials-arrow-border: #2B3831;
+  --testimonials-arrow-color: #F3F4F6;
+  --testimonials-cta-bg: #1E2823;
+  --testimonials-cta-border: #2B3831;
+  --testimonials-cta-text: #F3F4F6;
+}
+
+/* ==========================================================================
+   Sensible Global Defaults & Reset
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Headings base */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  margin: 0;
+  color: var(--color-text-primary);
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+p {
+  margin: 0;
+}
+
+/* Responsive Shared Container Utility */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 2.5vw, 2.25rem);
+  padding-right: clamp(1rem, 2.5vw, 2.25rem);
+  box-sizing: border-box;
+}
+
+/* Accessible focus ring for all interactive elements */
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Screen reader only utility class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Section eyebrow shared style */
+.section-eyebrow {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-eyebrow);
+  margin-bottom: var(--space-xs);
+}
+
+/* Button & Action Typography */
+button,
+.btn-quote-cta,
+.hero-cta-btn,
+.btn-quote-estimate,
+.btn-areas-quote,
+.btn-footer-estimate,
+.btn-google-reviews,
+.mobile-action-btn {
+  font-family: var(--font-heading, var(--font-sans));
+}
+
+/* ==========================================================================
+   Desktop-Specific Expansive Layout & Typography Scaling (Desktop Only)
+   ========================================================================== */
+@media (min-width: 1024px) {
+  :root {
+    --container-max-width: 1780px;
+  }
+
+  /* Noticeable, professional base typography increase for desktop */
+  html {
+    font-size: 18px;
+  }
+
+  .container {
+    padding-left: clamp(1.25rem, 2.5vw, 2.5rem);
+    padding-right: clamp(1.25rem, 2.5vw, 2.5rem);
+  }
+
+  /* Section Headings Scale Proportionately on Desktop (Reduced ~10%) */
+  .services-title,
+  .why-us-title,
+  .stats-title,
+  .gallery-title,
+  .service-areas-title,
+  .faq-title {
+    font-size: clamp(2.25rem, 3.15vw, 3.15rem) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.015em;
+  }
+
+  /* Section Descriptions & Lead Paragraphs (Reduced ~10%) */
+  .services-description,
+  .why-us-copy,
+  .stats-description,
+  .gallery-description,
+  .service-areas-description,
+  .faq-description {
+    font-size: 1.0625rem !important;
+    line-height: 1.75 !important;
+    max-width: 880px;
+  }
+
+  .section-eyebrow {
+    font-size: 0.84375rem !important;
+    letter-spacing: 0.1em;
+  }
+
+  /* Section Spacing & Card Scales on Desktop */
+  .services-grid {
+    gap: var(--space-xl) !important;
+  }
+
+  .service-card-title {
+    font-size: 1.215rem !important;
+  }
+
+  .service-card-text {
+    font-size: 0.9rem !important;
+    line-height: 1.55 !important;
+  }
+
+  /* Why Choose Us Benefits on Desktop */
+  .why-us-highlight {
+    font-size: 1.0125rem !important;
+  }
+
+  .benefit-title {
+    font-size: 1.17rem !important;
+  }
+
+  .benefit-description {
+    font-size: 0.956rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .benefit-icon-box {
+    width: 58px !important;
+    height: 58px !important;
+  }
+
+  /* Statistics Values on Desktop (Reduced ~10%) */
+  .stat-value {
+    font-size: clamp(2.475rem, 3.6vw, 3.375rem) !important;
+  }
+
+  .stat-label {
+    font-size: 1.035rem !important;
+  }
+
+  /* FAQ Accordion on Desktop */
+  .faq-accordion-wrapper {
+    max-width: 1320px !important;
+  }
+
+  .faq-question-text {
+    font-size: 1.08rem !important;
+    font-weight: 600;
+  }
+
+  .faq-answer-content p {
+    font-size: 0.956rem !important;
+    line-height: 1.75 !important;
+  }
+
+  /* Service Areas Location Links on Desktop */
+  .location-name {
+    font-size: 1.035rem !important;
+  }
+
+  .btn-areas-quote {
+    font-size: 1.0125rem !important;
+    padding: 1rem 2.25rem !important;
+  }
+
+  /* Full-width Quote CTA on Desktop (Reduced ~10%) */
+  .quote-cta-title {
+    font-size: clamp(2.475rem, 3.6vw, 3.375rem) !important;
+  }
+
+  .quote-cta-description {
+    font-size: 1.125rem !important;
+    line-height: 1.7 !important;
+    max-width: 760px;
+  }
+
+  .btn-quote-estimate {
+    font-size: 1.0125rem !important;
+    padding: 1.05rem 2.5rem !important;
+    min-height: 54px;
+  }
+
+  .btn-quote-phone {
+    font-size: 1.0125rem !important;
+    padding: 1.05rem 2.5rem !important;
+    min-height: 54px;
+  }
+
+  /* Footer Links on Desktop (Reduced ~10%) */
+  .footer-col-title {
+    font-size: 1.125rem !important;
+  }
+
+  .footer-brand-text {
+    font-size: 0.945rem !important;
+  }
+
+  .footer-links a,
+  .footer-contact-item {
+    font-size: 0.945rem !important;
+  }
+
+  .footer-bottom-bar {
+    font-size: 0.84375rem !important;
+  }
+
+  .footer-logo-img {
+    height: 68px !important;
+  }
+}

@@ -1,0 +1,322 @@
+/* ==========================================================================
+   Why Choose Us Component Styles (src/components/WhyChooseUs.css)
+   ========================================================================== */
+
+.why-us-section {
+  padding: clamp(4rem, 8vh, 6rem) 0;
+  background-color: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.25s ease;
+}
+
+
+.why-us-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1.15fr;
+  grid-template-rows: auto auto;
+  column-gap: clamp(2.5rem, 4vw, 4rem);
+  row-gap: var(--space-xl);
+  align-items: stretch;
+}
+
+
+/* Two-Image Overlap Composition (Desktop Left Column) */
+.why-us-image-block {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.why-us-image-composition {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  height: 100%;
+  min-height: 700px;
+}
+
+/* Back Image (Driveway, tall portrait) */
+.why-us-img-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 72%;
+  height: 82%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--color-border);
+  z-index: 1;
+}
+
+.why-us-img-back .why-us-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Front Image (Branded Truck, overlapping lower-right) */
+.why-us-img-front {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 76%;
+  height: 68%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
+  border: 8px solid var(--color-bg-surface);
+  z-index: 2;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+[data-theme="light"] .why-us-img-front {
+  box-shadow: 0 14px 32px rgba(1, 35, 64, 0.18);
+  border-color: #FFFFFF;
+}
+
+.why-us-img-front:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.55);
+}
+
+.why-us-img-front .why-us-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center left;
+  display: block;
+}
+
+/* Desktop: Right Column (Header Block in Row 1, Benefits in Row 2) */
+.why-us-header-block {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.why-us-title {
+  font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-md);
+  color: var(--color-text-primary);
+}
+
+.why-us-copy {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.why-us-highlight {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-subtle);
+  border-left: 3px solid #45b4e666;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 0;
+}
+
+/* Benefits Block */
+.why-us-benefits-block {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  background-color: var(--color-bg-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.benefit-item {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: var(--space-md);
+  align-items: flex-start;
+  position: relative;
+}
+
+.benefit-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-subtle);
+  color: var(--color-interactive);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.benefit-item:hover .benefit-icon-box {
+  transform: scale(1.05);
+  background-color: var(--color-interactive);
+  color: #FFFFFF;
+}
+
+.benefit-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.benefit-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.benefit-description {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Subtle separator between items */
+.benefit-item:not(:last-child) {
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints:
+   - Mobile (< 1024px): Two-image vertical overlap composition stacked with content
+   - Desktop (>= 1024px): 2-column layout (two-image composition on left, content on right)
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .why-us-section {
+    padding: clamp(3.5rem, 6vh, 5rem) 0;
+    background-color: var(--color-bg-surface);
+  }
+
+  .why-us-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .why-us-header-block {
+    width: 100%;
+    order: 1;
+  }
+
+  .why-us-image-block {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    order: 2;
+    margin: var(--space-sm) 0 var(--space-md);
+  }
+
+  .why-us-image-composition {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    height: 420px;
+    min-height: unset;
+  }
+
+  .why-us-img-back {
+    width: 68%;
+    height: 78%;
+    border-radius: var(--radius-sm);
+  }
+
+  .why-us-img-front {
+    width: 74%;
+    height: 66%;
+    border-radius: var(--radius-sm);
+    border-width: 6px;
+  }
+
+  .why-us-benefits-block {
+    width: 100%;
+    order: 3;
+  }
+
+  .benefits-list {
+    padding: var(--space-lg);
+  }
+}
+
+@media (max-width: 560px) {
+  .why-us-image-composition {
+    max-width: 330px;
+    height: 330px;
+  }
+
+  .benefit-item {
+    grid-template-columns: 44px 1fr;
+    gap: var(--space-sm);
+  }
+
+  .benefit-icon-box {
+    width: 44px;
+    height: 44px;
+  }
+
+  .benefit-title {
+    font-size: 1rem;
+  }
+
+  .benefit-description {
+    font-size: 0.875rem;
+  }
+}
+
+/* Desktop typography & spacing scaling (Reduced ~10%) */
+@media (min-width: 1024px) {
+  .why-us-title {
+    font-size: clamp(2.25rem, 3.15vw, 3.15rem);
+    line-height: 1.15;
+  }
+
+  .why-us-copy {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+
+  .why-us-highlight {
+    font-size: 1.0125rem;
+    line-height: 1.65;
+  }
+
+  .benefit-title {
+    font-size: 1.17rem;
+  }
+
+  .benefit-description {
+    font-size: 0.956rem;
+    line-height: 1.65;
+  }
+
+  .benefit-icon-box {
+    width: 58px;
+    height: 58px;
+  }
+}

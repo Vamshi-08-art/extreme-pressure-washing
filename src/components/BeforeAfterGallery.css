@@ -1,0 +1,283 @@
+/* ==========================================================================
+   Before & After Gallery Component Styles (src/components/BeforeAfterGallery.css)
+   ========================================================================== */
+
+.gallery-section {
+  padding: clamp(4rem, 8vh, 6rem) 0;
+  background-color: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.25s ease;
+}
+
+.gallery-header {
+  max-width: 720px;
+  margin-bottom: var(--space-2xl);
+  text-align: left;
+}
+
+.gallery-title {
+  font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-md);
+  color: var(--color-text-primary);
+}
+
+.gallery-description {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+}
+
+/* 4 Comparisons Grid: 2 columns on desktop, 1 column on tablet and mobile */
+.comparisons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+}
+
+.comparison-card {
+  background-color: var(--color-bg-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-sm);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.comparison-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(10, 140, 191, 0.4);
+}
+
+/* Slider Stage */
+.comparison-slider-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: ew-resize;
+  background-color: var(--brand-navy);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.after-img {
+  position: absolute;
+  inset: 0;
+}
+
+.comparison-before-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  will-change: clip-path;
+}
+
+.before-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Badges */
+.badge-before,
+.badge-after {
+  position: absolute;
+  top: 14px;
+  z-index: 5;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+}
+
+.badge-hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none;
+}
+
+.badge-before {
+  left: 14px;
+  background-color: rgba(1, 35, 64, 0.88);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.badge-after {
+  right: 14px;
+  background-color: #0A8CBF;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Draggable Handle */
+.comparison-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 44px;
+  margin-left: -22px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: ew-resize;
+  touch-action: none;
+}
+
+.comparison-handle:focus-visible {
+  outline: none;
+}
+
+.comparison-handle:focus-visible .handle-knob {
+  outline: 3px solid #4cbbe7;
+  outline-offset: 3px;
+}
+
+.handle-divider-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+.handle-knob {
+  position: relative;
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  background-color: #FFFFFF;
+  border: 2px solid var(--color-interactive);
+  color: var(--brand-navy);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.comparison-handle:hover .handle-knob {
+  transform: scale(1.1);
+  background-color: #4cbbe7;
+}
+
+/* View More Google Business Profile CTA */
+.gallery-cta-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--space-2xl);
+}
+
+.btn-gallery-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: 48px;
+  padding: 0.75rem 2.25rem;
+  font-family: var(--font-heading, var(--font-sans));
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background-color: var(--color-interactive);
+  border: 1px solid var(--color-interactive);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 14px rgba(10, 140, 191, 0.35);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-gallery-more:hover {
+  background-color: #08739d;
+  border-color: #08739d;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(10, 140, 191, 0.45);
+}
+
+.btn-gallery-more:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .comparisons-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+@media (max-width: 560px) {
+  .comparison-card {
+    padding: var(--space-md);
+  }
+
+  .badge-before,
+  .badge-after {
+    top: 10px;
+    font-size: 0.6875rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .badge-before {
+    left: 10px;
+  }
+
+  .badge-after {
+    right: 10px;
+  }
+}
+
+/* Desktop typography & spacing scaling (Reduced ~10%) */
+@media (min-width: 1024px) {
+  .gallery-title {
+    font-size: clamp(2.25rem, 3.15vw, 3.15rem);
+    line-height: 1.15;
+  }
+
+  .gallery-description {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    max-width: 860px;
+  }
+
+  .btn-gallery-more {
+    font-size: 1.0125rem;
+    padding: 1rem 2.5rem;
+  }
+}

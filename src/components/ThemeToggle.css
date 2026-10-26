@@ -1,0 +1,52 @@
+/* ==========================================================================
+   ThemeToggle Component Styles (src/components/ThemeToggle.css)
+   ========================================================================== */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  min-width: 38px;
+  padding: 0.4rem;
+  background: transparent;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.theme-toggle:hover {
+  background: transparent;
+  background-color: transparent;
+  transform: scale(1.12);
+  opacity: 0.9;
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid #4cbbe7;
+  outline-offset: 2px;
+}
+
+.theme-toggle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* Dark mode active: Sun icon in warm yellowish-orange */
+.theme-toggle-icon.sun-icon {
+  color: #F59E0B; /* Warm yellowish-orange */
+}
+
+/* Light mode active: Half-moon icon in crisp grey-white */
+.theme-toggle-icon.moon-icon {
+  color: #E2E8F0; /* Clean grey-white */
+}

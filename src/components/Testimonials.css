@@ -1,0 +1,544 @@
+/* ==========================================================================
+   Testimonials Component Styles (src/components/Testimonials.css)
+   ========================================================================== */
+
+.testimonials-section {
+  padding: clamp(4.5rem, 9vh, 6.5rem) 0;
+  background-color: var(--testimonials-bg);
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.25s ease;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.testimonials-container {
+  width: 100%;
+  max-width: 100%;
+  padding-left: clamp(1rem, 3vw, 2.5rem);
+  padding-right: clamp(1rem, 3vw, 2.5rem);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Central Section Header
+   ========================================================================== */
+
+.testimonials-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto clamp(2.5rem, 5vh, 4rem) auto;
+}
+
+.testimonials-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--testimonials-title-color);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Carousel Shell with Flanking Circular Arrows
+   ========================================================================== */
+
+.testimonials-carousel-shell {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Circular Navigation Arrows */
+.carousel-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--testimonials-arrow-bg);
+  border: 1px solid var(--testimonials-arrow-border);
+  color: var(--testimonials-arrow-color);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  flex-shrink: 0;
+}
+
+.carousel-nav-btn:hover {
+  transform: translateY(-50%) scale(1.08);
+  border-color: #4cbbe7;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+}
+
+.carousel-nav-btn:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+.carousel-nav-btn:focus-visible {
+  outline: 3px solid #4cbbe7;
+  outline-offset: 3px;
+}
+
+.prev-arrow {
+  left: 8px;
+}
+
+.next-arrow {
+  right: 8px;
+}
+
+/* ==========================================================================
+   Carousel Viewport & Edge Gradient Fades
+   ========================================================================== */
+
+.carousel-viewport {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 14px 0;
+  border-radius: var(--radius-md);
+}
+
+/* Gradient fades at left and right edges */
+.carousel-viewport::before,
+.carousel-viewport::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(48px, 8vw, 110px);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.carousel-viewport::before {
+  left: 0;
+  background: linear-gradient(to right, var(--testimonials-bg) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.carousel-viewport::after {
+  right: 0;
+  background: linear-gradient(to left, var(--testimonials-bg) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.carousel-viewport:focus-visible {
+  outline: 2px solid #4cbbe7;
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Carousel Track & Multi-Card Flex Layout
+   ========================================================================== */
+
+.carousel-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  will-change: transform;
+  align-items: stretch;
+}
+
+.review-card-item {
+  width: clamp(340px, 26vw, 420px);
+  flex: 0 0 clamp(340px, 26vw, 420px);
+  display: flex;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Base Review Card Appearance & Hierarchy (Desktop / Default)
+   Order:
+   1. Five gold star icons
+   2. Full review text (unquoted, non-italic, unclipped)
+   3. Thin horizontal divider
+   4. Reviewer name aligned left
+   ========================================================================== */
+
+.review-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: var(--radius-md);
+  padding: clamp(1.4rem, 2.5vw, 1.85rem);
+  background-color: var(--testimonials-card-bg);
+  border: 1px solid var(--testimonials-card-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-2px);
+  border-color: #45b4e666;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* 1. Five Star Icons */
+.review-stars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  color: #F59E0B;
+  margin-bottom: 1.15rem;
+}
+
+.star-icon {
+  fill: currentColor;
+}
+
+/* 2. Review Body */
+.review-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+
+.review-text {
+  font-size: 0.9375rem;
+  line-height: 1.68;
+  color: var(--testimonials-text);
+  font-style: normal;
+  margin: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+/* 3. Thin Horizontal Divider */
+.review-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--testimonials-divider);
+  margin-bottom: 1rem;
+}
+
+/* 4. Reviewer Name Aligned Left */
+.review-author {
+  display: flex;
+  align-items: center;
+}
+
+.review-author-name {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--testimonials-name);
+  letter-spacing: 0.01em;
+}
+
+/* ==========================================================================
+   Google Reviews CTA
+   ========================================================================== */
+
+.reviews-cta-container {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2.5rem, 5vh, 3.5rem);
+}
+
+.btn-google-reviews {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.75rem 1.85rem;
+  border-radius: var(--radius-md);
+  background-color: var(--testimonials-cta-bg);
+  border: 1px solid var(--testimonials-cta-border);
+  color: var(--testimonials-cta-text);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, color 0.2s ease;
+}
+
+.btn-google-reviews:hover {
+  background-color: var(--color-interactive);
+  border-color: var(--color-interactive);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.btn-google-reviews:focus-visible {
+  outline: 3px solid #4cbbe7;
+  outline-offset: 3px;
+}
+
+.google-icon {
+  color: var(--color-interactive);
+  transition: color 0.2s ease;
+}
+
+.btn-google-reviews:hover .google-icon {
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   Tablet Breakpoint (769px - 1023px)
+   ========================================================================== */
+
+@media (max-width: 1023px) and (min-width: 769px) {
+  .review-card-item {
+    width: clamp(290px, 42vw, 360px);
+    flex: 0 0 clamp(290px, 42vw, 360px);
+  }
+}
+
+/* ==========================================================================
+   Desktop Typography Scaling (min-width: 1024px)
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  .testimonials-title {
+    font-size: clamp(2.1rem, 2.9vw, 2.9rem);
+    font-weight: 800;
+  }
+
+  .review-card {
+    padding: 1.75rem;
+  }
+
+  .review-text {
+    font-size: 0.945rem;
+    line-height: 1.65;
+  }
+
+  .review-author-name {
+    font-size: 0.956rem;
+  }
+
+  .btn-google-reviews {
+    font-size: 0.956rem;
+    padding: 0.85rem 2rem;
+  }
+}
+
+/* ==========================================================================
+   Mobile Breakpoint (max-width: 768px)
+   DECLARED AFTER ALL BASE & DESKTOP STYLES TO GUARANTEE CASCADE SPECIFICITY
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .testimonials-container {
+    padding-left: clamp(0.5rem, 2vw, 1rem);
+    padding-right: clamp(0.5rem, 2vw, 1rem);
+  }
+
+  .testimonials-header {
+    margin-bottom: clamp(1.25rem, 3.5vh, 1.75rem);
+    padding: 0 1rem;
+    text-align: center;
+  }
+
+  /* Centered section heading */
+  .testimonials-title {
+    font-size: clamp(1.35rem, 5.5vw, 1.75rem) !important;
+    line-height: 1.25 !important;
+    text-align: center;
+  }
+
+  .testimonials-carousel-shell {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  /* Exactly fits between flanking circular buttons with balanced margins */
+  .carousel-viewport {
+    width: calc(100% - 72px);
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 8px 0;
+    position: relative;
+    border-radius: var(--radius-md);
+  }
+
+  /* Soft, subtle gradient fades along the left and right edges */
+  .carousel-viewport::before,
+  .carousel-viewport::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: clamp(14px, 4.5vw, 20px);
+    z-index: 4;
+    pointer-events: none;
+    display: block !important;
+  }
+
+  .carousel-viewport::before {
+    left: 0;
+    background: linear-gradient(to right, var(--testimonials-bg) 0%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  .carousel-viewport::after {
+    right: 0;
+    background: linear-gradient(to left, var(--testimonials-bg) 0%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  .carousel-track {
+    gap: 0 !important;
+    align-items: stretch !important;
+    height: 100% !important;
+    width: max-content !important;
+  }
+
+  /* Exactly one complete review card at a time on mobile with identical dimensions */
+  .review-card-item {
+    box-sizing: border-box !important;
+    padding: 0 4px !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    width: calc(100vw - 88px);
+    min-width: calc(100vw - 88px);
+    max-width: calc(100vw - 88px);
+    flex: 0 0 calc(100vw - 88px);
+  }
+
+  /* Uniform, compact, complete review card - strictly identical dimensions on mobile */
+  .testimonials-section .review-card,
+  .review-card {
+    height: 365px !important;
+    min-height: 365px !important;
+    max-height: 365px !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.85rem 1rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+    border-radius: var(--radius-md) !important;
+    background-color: var(--testimonials-card-bg) !important;
+    border: 1px solid var(--testimonials-card-border) !important;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07) !important;
+    overflow: hidden !important;
+  }
+
+  /* 1. Stars near top */
+  .testimonials-section .review-stars,
+  .review-stars {
+    display: flex !important;
+    align-items: center !important;
+    gap: 3px !important;
+    color: #F59E0B !important;
+    margin-bottom: 0.4rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .star-icon {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  /* 2. Complete review text in middle (never truncated or clipped) */
+  .testimonials-section .review-body,
+  .review-body {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    margin: 0 0 0.35rem 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Exact mobile review text font size: 11px / 0.6875rem with line-height ~1.45 */
+  .testimonials-section .review-card .review-text,
+  .review-card .review-text,
+  .review-text {
+    font-size: 0.6875rem !important; /* Exactly 11px at standard 16px root */
+    line-height: 1.45 !important;
+    color: var(--testimonials-text) !important;
+    margin: 0 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    display: block !important;
+    -webkit-line-clamp: unset !important;
+  }
+
+  /* 3. Thin divider */
+  .testimonials-section .review-divider,
+  .review-divider {
+    height: 1px !important;
+    width: 100% !important;
+    background-color: var(--testimonials-divider) !important;
+    margin: 0.4rem 0 0.35rem 0 !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* 4. Reviewer name near bottom */
+  .testimonials-section .review-author,
+  .review-author {
+    display: flex !important;
+    align-items: center !important;
+    margin-top: 0 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .testimonials-section .review-author-name,
+  .review-author-name {
+    font-size: 0.8125rem !important; /* 13px */
+    font-weight: 700 !important;
+    color: var(--testimonials-name) !important;
+    letter-spacing: 0.01em !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Flanking circular navigation arrows */
+  .carousel-nav-btn {
+    width: 36px;
+    height: 36px;
+    background-color: var(--testimonials-arrow-bg);
+    border: 1px solid var(--testimonials-arrow-border);
+    color: var(--testimonials-arrow-color);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+  }
+
+  .prev-arrow {
+    left: 0;
+  }
+
+  .next-arrow {
+    right: 0;
+  }
+}
+
+/* ==========================================================================
+   Reduced Motion Accessibility
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-marquee-track {
+    animation: none !important;
+  }
+
+  .carousel-manual-track {
+    transition: none !important;
+  }
+
+  .carousel-nav-btn {
+    transition: none !important;
+    transform: translateY(-50%) !important;
+  }
+}

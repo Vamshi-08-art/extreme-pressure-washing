@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Mobile Bottom Action Bar Styles (src/components/MobileActionBar.css)
+   ========================================================================== */
+
+.mobile-action-bar {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #1f2630;
+  box-shadow: 0 -3px 14px rgba(0, 0, 0, 0.35);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.mobile-action-bar-inner {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-action-btn {
+  flex: 1 1 50%;
+  width: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.95rem 0.5rem;
+  min-height: 52px;
+  text-decoration: none;
+  font-family: var(--font-heading, var(--font-sans));
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: #FFFFFF;
+  border: none;
+  margin: 0;
+  box-sizing: border-box;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+
+/* Left button: CALL NOW - #1f2630 matching navbar */
+.mobile-action-call {
+  background-color: #1f2630;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mobile-action-call:hover,
+.mobile-action-call:active {
+  background-color: #2b3543;
+}
+
+/* Right button: FREE ESTIMATE - primary interactive blue */
+.mobile-action-estimate {
+  background-color: var(--color-interactive, #0A8CBF);
+}
+
+.mobile-action-estimate:hover,
+.mobile-action-estimate:active {
+  background-color: var(--color-interactive-hover, #086F97);
+}
+
+.mobile-action-btn:focus-visible {
+  outline: 2px solid #4cbbe7;
+  outline-offset: -2px;
+  z-index: 2;
+}
+
+.mobile-action-icon {
+  flex-shrink: 0;
+}
+
+/* Hide on desktop and tablet viewports (>= 1024px) */
+@media (min-width: 1024px) {
+  .mobile-action-bar {
+    display: none !important;
+  }
+}
+

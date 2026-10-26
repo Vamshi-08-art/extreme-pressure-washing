@@ -1,0 +1,188 @@
+/* ==========================================================================
+   Hero Component Styles (src/components/Hero.css)
+   ========================================================================== */
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: clamp(520px, 72vh, 680px);
+  display: flex;
+  background-color: #1f2630; /* Fixed brand surface in both light and dark modes */
+  background-image:
+    /* Directional dark charcoal overlay based on #1f2630, fading smoothly to the right */
+    linear-gradient(
+      90deg,
+      rgba(31, 38, 48, 0.96) 0%,
+      rgba(31, 38, 48, 0.90) 35%,
+      rgba(31, 38, 48, 0.65) 60%,
+      rgba(31, 38, 48, 0.25) 85%,
+      rgba(31, 38, 48, 0.08) 100%
+    ),
+    url('/images/hero-pressure-washing.jpg');
+  background-position: center right;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hero-overlay {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: clamp(4.5rem, 11vh, 7.5rem) 0;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: clamp(680px, 60vw, 880px);
+  color: #FFFFFF;
+}
+
+.hero-title {
+  color: #FFFFFF;
+  font-size: clamp(2.75rem, 5.2vw, 4.25rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-lg);
+  text-shadow: 0 2px 4px rgba(15, 20, 26, 0.45);
+}
+
+.hero-description {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+  line-height: 1.7;
+  margin-bottom: 2.25rem;
+  max-width: 740px;
+  text-shadow: 0 1px 3px rgba(15, 20, 26, 0.35);
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.hero-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.05rem 2.5rem;
+  background-color: var(--color-interactive);
+  color: #FFFFFF;
+  font-family: var(--font-heading, var(--font-sans));
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 14px rgba(10, 140, 191, 0.4), 0 2px 4px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  min-height: 52px;
+}
+
+.hero-cta-btn:hover {
+  background-color: var(--color-interactive-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(10, 140, 191, 0.55), 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero-cta-btn:active {
+  transform: translateY(0);
+}
+
+.hero-cta-btn:focus-visible {
+  outline: 3px solid #4cbbe7;
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+/* Desktop Typography Refinement (~15% reduction on desktop only) */
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: clamp(2.35rem, 4.4vw, 3.6rem);
+  }
+
+  .hero-description {
+    font-size: clamp(0.98rem, 1.5vw, 1.15rem);
+    max-width: 680px;
+  }
+}
+
+/* Tablet & Mobile Adjustments (< 1024px) */
+@media (max-width: 1023px) {
+  .hero-section {
+    min-height: auto;
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(31, 38, 48, 0.82) 0%,
+        rgba(31, 38, 48, 0.70) 55%,
+        rgba(31, 38, 48, 0.42) 100%
+      ),
+      url('/images/hero-pressure-washing.jpg');
+    background-position: 70% center;
+  }
+
+  .hero-overlay {
+    padding: clamp(3rem, 7vh, 4.5rem) 0;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-title {
+    font-size: clamp(2.15rem, 6.8vw, 3rem);
+    line-height: 1.16;
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-description {
+    font-size: clamp(1.0625rem, 3.8vw, 1.2rem);
+    line-height: 1.62;
+    margin-bottom: var(--space-lg);
+  }
+
+  /* Mobile CTA: aligned to left of content */
+  .hero-actions {
+    justify-content: flex-start;
+  }
+
+  .hero-cta-btn {
+    width: auto;
+    align-self: flex-start;
+    font-size: 1.0625rem;
+    padding: 0.95rem 2rem;
+  }
+}
+
+/* Extra small mobile (< 480px) */
+@media (max-width: 479px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .hero-cta-btn {
+    padding: 0.875rem 1.85rem;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta-btn {
+    transition: none;
+    transform: none !important;
+  }
+}
