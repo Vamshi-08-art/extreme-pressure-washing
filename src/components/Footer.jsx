@@ -1,21 +1,26 @@
 import { useState, useEffect } from 'react';
 import { SERVICE_AREAS, getActiveServiceAreaLocation } from '../data/serviceAreas';
-import { navigateTo } from '../utils/navigation';
+import { navigateTo, getCurrentRoute } from '../utils/navigation';
 import './Footer.css';
 
 /**
  * Footer Component with Inspired Inquiry Form
  *
- * Full-width site footer with 4 multi-column sections:
+ * Full-width site footer with responsive columns:
  * 1. Brand logo, verified summary, phone, email, and social link.
  * 2. Quick navigation links including "Request a Quote".
  * 3. 6 Confirmed Service Area hub links.
- * 4. Dedicated Quick Inquiry Form inspired by the design reference (demo only).
+ * 4. Dedicated Quick Inquiry Form (shown ONLY on the Get a Free Quote page).
  * 5. Dynamic copyright and verified location disclaimer.
  */
-export default function Footer() {
+export default function Footer({ isQuotePage: isQuotePageProp }) {
   const currentYear = new Date().getFullYear();
   const [activeLocation, setActiveLocation] = useState(getActiveServiceAreaLocation);
+  const [isQuoteRoute, setIsQuoteRoute] = useState(() => {
+    if (typeof isQuotePageProp === 'boolean') return isQuotePageProp;
+    if (typeof window !== 'undefined') return getCurrentRoute() === '/quote';
+    return false;
+  });
   const [inquiryData, setInquiryData] = useState({
     name: '',
     email: '',
@@ -23,7 +28,7 @@ export default function Footer() {
   });
   const [inquirySubmitted, setInquirySubmitted] = useState(false);
 
-  // Sync active location on route or hash changes
+  // Sync active location and route on route or hash changes
   useEffect(() => {
     const handleLocationChange = () => {
       setActiveLocation(getActiveServiceAreaLocation());
@@ -36,6 +41,27 @@ export default function Footer() {
       window.removeEventListener('popstate', handleLocationChange);
     };
   }, []);
+
+  // Sync quote page status if prop is omitted or dynamic
+  useEffect(() => {
+    if (typeof isQuotePageProp === 'boolean') {
+      setIsQuoteRoute(isQuotePageProp);
+      return;
+    }
+
+    const handleRouteChange = () => {
+      setIsQuoteRoute(getCurrentRoute() === '/quote');
+    };
+
+    window.addEventListener('popstate', handleRouteChange);
+    window.addEventListener('hashchange', handleRouteChange);
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange);
+      window.removeEventListener('hashchange', handleRouteChange);
+    };
+  }, [isQuotePageProp]);
+
+  const showInquiryForm = typeof isQuotePageProp === 'boolean' ? isQuotePageProp : isQuoteRoute;
 
   const handleInquiryChange = (e) => {
     const { name, value } = e.target;
@@ -53,7 +79,7 @@ export default function Footer() {
       <h2 id="footer-heading" className="sr-only">Footer Information</h2>
 
       <div className="container">
-        <div className="footer-grid">
+        <div className={`footer-grid ${showInquiryForm ? 'has-inquiry' : ''}`}>
           {/* Group 1: Company Information & Verified Contacts */}
           <div className="footer-col footer-col-brand">
             <a
@@ -241,74 +267,76 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Group 4: Small Footer Enquiry Form (Inspired by reference design) */}
-          <div className="footer-col footer-col-inquiry">
-            <div className="footer-inquiry-card">
-              <h3 className="footer-inquiry-heading">Have any inquiry? Drop us a few lines!</h3>
-              <p className="footer-inquiry-note">
-                Send a quick note or call <a href="tel:803-833-0988">803-833-0988</a>.
-              </p>
+          {/* Group 4: Small Footer Enquiry Form (Shown ONLY on Get a Free Quote page) */}
+          {showInquiryForm && (
+            <div className="footer-col footer-col-inquiry">
+              <div className="footer-inquiry-card">
+                <h3 className="footer-inquiry-heading">Have any inquiry? Drop us a few lines!</h3>
+                <p className="footer-inquiry-note">
+                  Send a quick note or call <a href="tel:803-833-0988">803-833-0988</a>.
+                </p>
 
-              <form className="footer-inquiry-form" onSubmit={handleInquirySubmit}>
-                <div className="footer-form-field">
-                  <label htmlFor="footer-name" className="sr-only">Your Name</label>
-                  <input
-                    id="footer-name"
-                    name="name"
-                    type="text"
-                    className="footer-form-input"
-                    placeholder="Your name"
-                    value={inquiryData.name}
-                    onChange={handleInquiryChange}
-                    required
-                  />
-                </div>
-
-                <div className="footer-form-field">
-                  <label htmlFor="footer-email" className="sr-only">Email address</label>
-                  <input
-                    id="footer-email"
-                    name="email"
-                    type="email"
-                    className="footer-form-input"
-                    placeholder="Email address"
-                    value={inquiryData.email}
-                    onChange={handleInquiryChange}
-                    required
-                  />
-                </div>
-
-                <div className="footer-form-field">
-                  <label htmlFor="footer-message" className="sr-only">Your message</label>
-                  <textarea
-                    id="footer-message"
-                    name="message"
-                    rows="2"
-                    className="footer-form-textarea"
-                    placeholder="Your message"
-                    value={inquiryData.message}
-                    onChange={handleInquiryChange}
-                    required
-                  />
-                </div>
-
-                <div className="footer-form-actions">
-                  <button type="submit" className="btn-footer-send">
-                    <span>Send Message</span>
-                  </button>
-                  <span className="footer-demo-pill">Visual demo only</span>
-                </div>
-
-                {inquirySubmitted && (
-                  <div className="footer-demo-alert" role="status">
-                    <span>
-                      <strong>Visual Demo Only:</strong> Message not sent to backend. Please call <a href="tel:803-833-0988">803-833-0988</a> for service.
-                    </span>
+                <form className="footer-inquiry-form" onSubmit={handleInquirySubmit}>
+                  <div className="footer-form-field">
+                    <label htmlFor="footer-name" className="sr-only">Your Name</label>
+                    <input
+                      id="footer-name"
+                      name="name"
+                      type="text"
+                      className="footer-form-input"
+                      placeholder="Your name"
+                      value={inquiryData.name}
+                      onChange={handleInquiryChange}
+                      required
+                    />
                   </div>
-                )}
-              </form>
+
+                  <div className="footer-form-field">
+                    <label htmlFor="footer-email" className="sr-only">Email address</label>
+                    <input
+                      id="footer-email"
+                      name="email"
+                      type="email"
+                      className="footer-form-input"
+                      placeholder="Email address"
+                      value={inquiryData.email}
+                      onChange={handleInquiryChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="footer-form-field">
+                    <label htmlFor="footer-message" className="sr-only">Your message</label>
+                    <textarea
+                      id="footer-message"
+                      name="message"
+                      rows="2"
+                      className="footer-form-textarea"
+                      placeholder="Your message"
+                      value={inquiryData.message}
+                      onChange={handleInquiryChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="footer-form-actions">
+                    <button type="submit" className="btn-footer-send">
+                      <span>Send Message</span>
+                    </button>
+                    <span className="footer-demo-pill">Visual demo only</span>
+                  </div>
+
+                  {inquirySubmitted && (
+                    <div className="footer-demo-alert" role="status">
+                      <span>
+                        <strong>Visual Demo Only:</strong> Message not sent to backend. Please call <a href="tel:803-833-0988">803-833-0988</a> for service.
+                      </span>
+                    </div>
+                  )}
+                </form>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Bottom Copyright Row */}

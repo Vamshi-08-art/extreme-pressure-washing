@@ -87,7 +87,7 @@ function App() {
       </main>
 
       {/* 11. Footer */}
-      <Footer />
+      <Footer isQuotePage={isQuotePage} />
 
       {/* Fixed Mobile Bottom Action Bar */}
       <MobileActionBar />

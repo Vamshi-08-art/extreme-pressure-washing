@@ -13,10 +13,14 @@
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.3fr 0.85fr 0.85fr 1.35fr;
+  grid-template-columns: 1.6fr 1fr 1.2fr;
   gap: var(--space-xl);
   margin-bottom: var(--space-3xl);
   align-items: start;
+}
+
+.footer-grid.has-inquiry {
+  grid-template-columns: 1.3fr 0.85fr 0.85fr 1.35fr;
 }
 
 .footer-col {
@@ -385,14 +389,16 @@
     padding-bottom: calc(var(--space-2xl) + 54px + env(safe-area-inset-bottom, 0px));
   }
 
-  .footer-grid {
+  .footer-grid,
+  .footer-grid.has-inquiry {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-xl);
   }
 }
 
 @media (max-width: 600px) {
-  .footer-grid {
+  .footer-grid,
+  .footer-grid.has-inquiry {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
   }
