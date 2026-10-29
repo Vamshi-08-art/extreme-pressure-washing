@@ -1,3 +1,4 @@
+import { navigateTo } from '../utils/navigation';
 import './MobileActionBar.css';
 
 /**
@@ -5,7 +6,7 @@ import './MobileActionBar.css';
  *
  * Fixed action bar docked to the bottom of the viewport on mobile devices only.
  * - Left: CALL NOW (tel:803-833-0988, background #1f2630 matching navbar)
- * - Right: FREE ESTIMATE (href="#quote", background var(--color-interactive, #0A8CBF))
+ * - Right: FREE ESTIMATE (href="/quote", background var(--color-interactive, #0A8CBF))
  * - Equal 50/50 width, no gap between buttons, with safe-area-inset-bottom support.
  * - Hidden on desktop and tablet layouts (breakpoint: 1024px).
  */
@@ -36,9 +37,13 @@ export default function MobileActionBar() {
         </a>
 
         <a
-          href="#quote"
+          href="/quote"
           className="mobile-action-btn mobile-action-estimate"
-          aria-label="Request a free pressure washing estimate"
+          onClick={(e) => {
+            e.preventDefault();
+            navigateTo('/quote');
+          }}
+          aria-label="Request a free pressure washing estimate (Dedicated Quote Page)"
         >
           <span>FREE ESTIMATE</span>
         </a>

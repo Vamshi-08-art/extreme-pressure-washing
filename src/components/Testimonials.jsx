@@ -66,6 +66,8 @@ export default function Testimonials() {
   const resumeTimerRef = useRef(null);
   const isInitializedRef = useRef(false);
   const targetIndexRef = useRef(0);
+  const cardHeightRef = useRef(0);
+  const [equalCardHeight, setEqualCardHeight] = useState(0);
   const [mobileCardWidth, setMobileCardWidth] = useState(() => {
     if (typeof window !== 'undefined' && window.innerWidth <= 768) {
       const isNarrow = window.innerWidth <= 480;
@@ -74,6 +76,39 @@ export default function Testimonials() {
     }
     return 0;
   });
+
+  // Calculate uniform card height based on the longest review across all cards
+  const syncEqualCardHeights = useCallback(() => {
+    if (!trackRef.current) return;
+    const cards = trackRef.current.querySelectorAll('.review-card');
+    if (!cards || cards.length === 0) return;
+
+    // Temporarily reset inline height so each card computes its natural content height
+    cards.forEach((card) => {
+      card.style.height = 'auto';
+      card.style.minHeight = '0';
+    });
+
+    let maxH = 0;
+    cards.forEach((card) => {
+      const h = card.offsetHeight;
+      if (h > maxH) {
+        maxH = h;
+      }
+    });
+
+    if (maxH > 0) {
+      const uniformHeight = Math.ceil(maxH);
+      cards.forEach((card) => {
+        card.style.height = `${uniformHeight}px`;
+        card.style.minHeight = `${uniformHeight}px`;
+      });
+      if (cardHeightRef.current !== uniformHeight) {
+        cardHeightRef.current = uniformHeight;
+        setEqualCardHeight(uniformHeight);
+      }
+    }
+  }, []);
 
   // Helper to schedule marquee movement resumption after exactly 5 seconds of inactivity
   const scheduleResume = useCallback(() => {
@@ -89,7 +124,7 @@ export default function Testimonials() {
     }, 5000);
   }, []);
 
-  // Measure card step and set width accurately from DOM elements
+  // Measure card step, set width, and equalize heights dynamically
   const measureTrack = useCallback(() => {
     if (viewportRef.current && trackRef.current && trackRef.current.children.length > 1) {
       const isMobile = window.innerWidth <= 768;
@@ -130,13 +165,17 @@ export default function Testimonials() {
           }
         }
       }
+
+      // Synchronize equal heights across all cards
+      syncEqualCardHeights();
     }
-  }, []);
+  }, [syncEqualCardHeights]);
 
   // Measure before browser paint to prevent layout jumps
   useLayoutEffect(() => {
     measureTrack();
-  }, [measureTrack]);
+    syncEqualCardHeights();
+  }, [measureTrack, syncEqualCardHeights, mobileCardWidth]);
 
   // Continuous right-to-left marquee animation loop
   useEffect(() => {
@@ -221,6 +260,23 @@ export default function Testimonials() {
     };
   }, [measureTrack]);
 
+  // Recalculate card heights whenever fonts finish loading or viewport container resizes
+  useEffect(() => {
+    if (typeof document !== 'undefined' && document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        syncEqualCardHeights();
+      });
+    }
+
+    if (viewportRef.current && typeof ResizeObserver !== 'undefined') {
+      const ro = new ResizeObserver(() => {
+        measureTrack();
+      });
+      ro.observe(viewportRef.current);
+      return () => ro.disconnect();
+    }
+  }, [measureTrack, syncEqualCardHeights]);
+
   // Smooth ease-out glide to target offset without jumping or losing cards
   const animateToOffset = useCallback((targetOffset) => {
     isSteppingRef.current = true;
@@ -301,13 +357,9 @@ export default function Testimonials() {
     scheduleResume();
   }, [animateToOffset, scheduleResume]);
 
-  // Pause control handlers
-  const handleMouseEnter = () => {
+  // Card click handler: pause marquee movement and schedule resumption
+  const handleCardClick = () => {
     isPausedRef.current = true;
-    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
-  };
-
-  const handleMouseLeave = () => {
     scheduleResume();
   };
 
@@ -373,8 +425,6 @@ export default function Testimonials() {
         {/* Carousel Outer Shell with Flanking Circular Arrows */}
         <div
           className="testimonials-carousel-shell"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           role="region"
@@ -437,7 +487,18 @@ export default function Testimonials() {
                     }
                     aria-hidden={isDuplicate ? 'true' : undefined}
                   >
-                    <article className="review-card">
+                    <article
+                      className="review-card"
+                      onClick={handleCardClick}
+                      style={
+                        equalCardHeight > 0
+                          ? {
+                              height: `${equalCardHeight}px`,
+                              minHeight: `${equalCardHeight}px`,
+                            }
+                          : undefined
+                      }
+                    >
                       {/* 1. Five gold star icons */}
                       <div className="review-stars" aria-label={`Rating: ${review.rating} out of 5 stars`}>
                         {[...Array(review.rating)].map((_, i) => (

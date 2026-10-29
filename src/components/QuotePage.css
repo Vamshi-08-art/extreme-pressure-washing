@@ -1,0 +1,644 @@
+/* ==========================================================================
+   QuotePage Component Styles (src/components/QuotePage.css)
+   Dedicated "Get a Free Quote" page styling adhering to existing design tokens
+   ========================================================================== */
+
+.quote-page {
+  width: 100%;
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   1. Hero Header Section
+   Reusing existing hero image: /images/hero-pressure-washing.jpg
+   ========================================================================== */
+
+.quote-hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(340px, 46vh, 460px);
+  display: flex;
+  background-color: #1f2630;
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(1, 35, 64, 0.94) 0%,
+      rgba(15, 23, 42, 0.90) 50%,
+      rgba(10, 140, 191, 0.45) 100%
+    ),
+    url('/images/hero-pressure-washing.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #FFFFFF;
+}
+
+.quote-hero-overlay {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: clamp(3rem, 6vh, 5rem) 0 clamp(4rem, 8vh, 6rem) 0;
+}
+
+.quote-hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 900px;
+}
+
+/* Breadcrumb */
+.quote-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: var(--space-md);
+}
+
+.quote-breadcrumb a {
+  color: #9BEAF2;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.quote-breadcrumb a:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.breadcrumb-current {
+  color: #FFFFFF;
+}
+
+.quote-hero-eyebrow {
+  color: #9BEAF2;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+}
+
+.quote-hero-title {
+  color: #FFFFFF;
+  font-size: clamp(2.4rem, 4.8vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-md) 0;
+}
+
+.quote-hero-intro {
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 var(--space-md) 0;
+  max-width: 820px;
+}
+
+.quote-hero-subnote {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+  max-width: 780px;
+}
+
+/* ==========================================================================
+   2. Main Quote Form Section & Prominent Container Card
+   Inspired by reference design with clean spacing & typography
+   ========================================================================== */
+
+.quote-form-section {
+  position: relative;
+  width: 100%;
+  padding-bottom: clamp(4rem, 8vh, 6.5rem);
+  background-color: var(--color-bg-surface);
+  transition: background-color 0.25s ease;
+}
+
+.quote-form-wrapper {
+  max-width: 860px;
+  width: 100%;
+  margin: -3.5rem auto 0 auto;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.quote-form-card {
+  background-color: var(--color-bg-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.75rem, 4vw, 3.25rem);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.14);
+  box-sizing: border-box;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.quote-form-header {
+  margin-bottom: 1.75rem;
+  text-align: left;
+}
+
+.quote-form-heading {
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.01em;
+}
+
+.quote-form-desc {
+  font-size: 0.975rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Demo Notice Indicator */
+.demo-notice-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.15rem;
+  border-radius: var(--radius-md);
+  background-color: rgba(10, 140, 191, 0.08);
+  border: 1px solid rgba(10, 140, 191, 0.25);
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  margin-bottom: 2rem;
+}
+
+.demo-notice-indicator svg {
+  color: var(--color-interactive);
+  flex-shrink: 0;
+}
+
+.demo-notice-indicator a {
+  color: var(--color-interactive);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.demo-notice-indicator a:hover {
+  text-decoration: underline;
+}
+
+/* Form Grid */
+.quote-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.35rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field-full {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.45rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.field-required {
+  color: #EF4444;
+  font-weight: 800;
+}
+
+.field-optional {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  font-size: 0.975rem;
+  font-family: inherit;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-page);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.25s ease;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.75;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-interactive);
+  box-shadow: 0 0 0 3px rgba(10, 140, 191, 0.2);
+}
+
+/* Custom Select Dropdown Styling */
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 2.75rem;
+  cursor: pointer;
+}
+
+.select-arrow-icon {
+  position: absolute;
+  right: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.5;
+}
+
+/* Submit Actions */
+.form-submit-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-quote-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background-color: var(--color-interactive);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.95rem 2.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(10, 140, 191, 0.35);
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn-quote-submit:hover {
+  background-color: var(--color-interactive-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(10, 140, 191, 0.45);
+}
+
+.btn-quote-submit:active {
+  transform: translateY(0);
+}
+
+.btn-quote-submit:focus-visible {
+  outline: 3px solid #4cbbe7;
+  outline-offset: 3px;
+}
+
+.submit-disclaimer {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* Demo Status Alert Banner (Shown on submit) */
+.demo-submission-alert {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-md);
+  background-color: rgba(10, 140, 191, 0.08);
+  border: 1px solid var(--color-interactive);
+  animation: fadeIn 0.2s ease;
+}
+
+.demo-alert-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-interactive);
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.demo-submission-alert p {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin: 0 0 1rem 0;
+}
+
+.demo-alert-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-demo-contact {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-interactive);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: opacity 0.15s ease;
+}
+
+.btn-demo-contact:hover {
+  opacity: 0.9;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   3. Note Below Form & Verified Information Strip
+   ========================================================================== */
+
+.quote-form-footer-note {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.note-card {
+  display: flex;
+  gap: 1.15rem;
+  align-items: flex-start;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-page);
+  border: 1px solid var(--color-border);
+  margin-bottom: 1.75rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.note-icon-col {
+  color: var(--color-interactive);
+  flex-shrink: 0;
+  padding-top: 0.15rem;
+}
+
+.note-content-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.note-primary-text {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.note-call-action {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  margin: 0;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.note-call-action a {
+  color: var(--color-interactive);
+  font-weight: 700;
+  text-decoration: none;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.note-call-action a:hover {
+  text-decoration: underline;
+}
+
+/* Verified Info Strip (Business Information Card) */
+.verified-info-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+  background-color: var(--color-bg-page);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.verified-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.verified-info-full {
+  grid-column: 1 / -1;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-border);
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.verified-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.verified-value {
+  font-size: 0.9375rem;
+  color: var(--color-text-primary);
+  font-weight: 600;
+  line-height: 1.45;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.verified-link {
+  font-size: 0.9375rem;
+  color: var(--color-interactive);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  min-width: 0;
+  max-width: 100%;
+  display: inline-block;
+}
+
+.verified-link:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   4. Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .quote-hero-overlay {
+    padding: 2.5rem 0 4.5rem 0;
+  }
+
+  .quote-form-wrapper {
+    margin-top: -2.5rem;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  .quote-form-card {
+    padding: clamp(1.25rem, 4vw, 1.5rem) clamp(0.75rem, 3.5vw, 1.15rem);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+
+  .btn-quote-submit {
+    width: 100%;
+    padding: 0.95rem 1.5rem;
+  }
+
+  .form-submit-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .quote-form-footer-note {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  .note-card {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  .verified-info-strip {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.85rem;
+    padding: 1rem clamp(0.75rem, 3vw, 1.15rem);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  .verified-info-item {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .verified-info-full {
+    border-top: none;
+    padding-top: 0;
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .verified-value,
+  .verified-link {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    white-space: normal;
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+

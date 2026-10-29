@@ -13,9 +13,10 @@
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
-  gap: var(--space-2xl);
+  grid-template-columns: 1.3fr 0.85fr 0.85fr 1.35fr;
+  gap: var(--space-xl);
   margin-bottom: var(--space-3xl);
+  align-items: start;
 }
 
 .footer-col {
@@ -202,34 +203,156 @@
   flex-shrink: 0;
 }
 
-.footer-cta-box {
-  margin-top: auto;
+.footer-quote-link-highlight {
+  color: #4cbbe7 !important;
+  font-weight: 700 !important;
 }
 
-.btn-footer-estimate {
+/* ==========================================================================
+   Footer Inquiry Form Card (Inspired by reference layout)
+   ========================================================================== */
+
+.footer-col-inquiry {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-inquiry-card {
+  background-color: #FFFFFF;
+  color: #012340;
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.35rem;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  box-sizing: border-box;
+}
+
+.footer-inquiry-heading {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #012340;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.3;
+}
+
+.footer-inquiry-note {
+  font-size: 0.8125rem;
+  color: #475569;
+  margin: 0 0 0.85rem 0;
+}
+
+.footer-inquiry-note a {
+  color: var(--color-interactive);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.footer-inquiry-note a:hover {
+  text-decoration: underline;
+}
+
+.footer-inquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer-form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-form-input,
+.footer-form-textarea {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: #012340;
+  background-color: #F8FAFC;
+  border: 1px solid #CBD5E1;
+  border-radius: var(--radius-sm);
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.footer-form-input::placeholder,
+.footer-form-textarea::placeholder {
+  color: #94A3B8;
+}
+
+.footer-form-input:focus,
+.footer-form-textarea:focus {
+  outline: none;
+  border-color: var(--color-interactive);
+  box-shadow: 0 0 0 2px rgba(10, 140, 191, 0.2);
+  background-color: #FFFFFF;
+}
+
+.footer-form-textarea {
+  resize: vertical;
+  min-height: 60px;
+  line-height: 1.4;
+}
+
+.footer-form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+.btn-footer-send {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0.75rem 1.25rem;
-  border-radius: var(--radius-md);
+  padding: 0.7rem 1.15rem;
+  border-radius: var(--radius-sm);
   background-color: var(--color-interactive);
   color: #FFFFFF;
+  border: none;
   font-size: 0.9375rem;
   font-weight: 700;
-  text-decoration: none;
+  cursor: pointer;
   box-shadow: 0 4px 12px rgba(10, 140, 191, 0.3);
-  transition: background-color 0.2s ease, transform 0.15s ease;
+  transition: background-color 0.15s ease, transform 0.15s ease;
 }
 
-.btn-footer-estimate:hover {
+.btn-footer-send:hover {
   background-color: var(--color-interactive-hover);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
-.btn-footer-estimate:focus-visible {
-  outline: 3px solid #4cbbe7;
-  outline-offset: 3px;
+.btn-footer-send:active {
+  transform: translateY(0);
+}
+
+.btn-footer-send:focus-visible {
+  outline: 2px solid #4cbbe7;
+  outline-offset: 2px;
+}
+
+.footer-demo-pill {
+  font-size: 0.725rem;
+  color: #64748B;
+  text-align: center;
+}
+
+.footer-demo-alert {
+  margin-top: 0.5rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  background-color: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  color: #1E3A8A;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.footer-demo-alert a {
+  color: #1D4ED8;
+  font-weight: 700;
+  text-decoration: underline;
 }
 
 /* Bottom Bar */

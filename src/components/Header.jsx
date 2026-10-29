@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import ThemeToggle from './ThemeToggle';
+import { navigateTo, getCurrentRoute } from '../utils/navigation';
 import './Header.css';
 
 /**
@@ -39,7 +40,12 @@ const COMMERCIAL_SERVICES = [
 ];
 
 export default function Header() {
-  const [activeLink, setActiveLink] = useState('home');
+  const [activeLink, setActiveLink] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return getCurrentRoute() === '/quote' ? 'quote' : 'home';
+    }
+    return 'home';
+  });
   const [openDropdown, setOpenDropdown] = useState(null); // 'residential' | 'commercial' | 'blog' | null
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileExpandedDropdown, setMobileExpandedDropdown] = useState(null);
@@ -152,11 +158,47 @@ export default function Header() {
     setMobileExpandedDropdown((prev) => (prev === name ? null : name));
   };
 
-  // Navigation click handler
-  const handleLinkSelect = (id) => {
+  // Sync activeLink with route and hash changes
+  useEffect(() => {
+    const handleRouteChange = () => {
+      const route = getCurrentRoute();
+      if (route === '/quote') {
+        setActiveLink('quote');
+      } else {
+        const hash = window.location.hash.replace('#', '') || 'home';
+        setActiveLink(hash);
+      }
+    };
+
+    window.addEventListener('popstate', handleRouteChange);
+    window.addEventListener('hashchange', handleRouteChange);
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange);
+      window.removeEventListener('hashchange', handleRouteChange);
+    };
+  }, []);
+
+  // Navigation click handler with seamless route switching
+  const handleLinkSelect = (id, targetHref) => {
     setActiveLink(id);
     setOpenDropdown(null);
     setIsMobileMenuOpen(false);
+
+    if (id === 'quote' || id === '/quote') {
+      navigateTo('/quote');
+      return;
+    }
+
+    if (id === 'home' || id === '/') {
+      navigateTo('/');
+      return;
+    }
+
+    if (targetHref) {
+      navigateTo(targetHref);
+    } else {
+      navigateTo(`/#${id}`);
+    }
   };
 
   return (
@@ -466,9 +508,12 @@ export default function Header() {
                 <div className="desktop-nav-actions">
                   <ThemeToggle />
                   <a
-                    href="#quote"
+                    href="/quote"
                     className="btn-quote-cta"
-                    onClick={() => handleLinkSelect('quote')}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkSelect('quote', '/quote');
+                    }}
                   >
                     Get a Free Quote
                   </a>
@@ -686,9 +731,12 @@ export default function Header() {
                 {/* Mobile Quote CTA */}
                 <div className="mobile-cta-wrapper">
                   <a
-                    href="#quote"
+                    href="/quote"
                     className="btn-quote-cta btn-quote-mobile"
-                    onClick={() => handleLinkSelect('quote')}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkSelect('quote', '/quote');
+                    }}
                   >
                     Get a Free Quote
                   </a>

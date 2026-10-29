@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { SERVICE_AREAS } from '../data/serviceAreas';
+import { navigateTo } from '../utils/navigation';
 import './ServiceAreas.css';
 
 /**
@@ -269,7 +270,15 @@ export default function ServiceAreas() {
             </ul>
 
             <div className="service-areas-cta">
-              <a href="#quote" className="btn-areas-quote">
+              <a
+                href="/quote"
+                className="btn-areas-quote"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateTo('/quote');
+                }}
+                aria-label="Request a quote for service in your area"
+              >
                 <span>Request Service in Your Area</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <line x1="5" y1="12" x2="19" y2="12" />

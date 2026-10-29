@@ -1,3 +1,4 @@
+import { navigateTo } from '../utils/navigation';
 import './Hero.css';
 
 /**
@@ -7,7 +8,7 @@ import './Hero.css';
  * - Full-width photographic hero section using /images/hero-pressure-washing.jpg
  * - Directional brand navy gradient fading smoothly toward the right
  * - High-contrast, bold typography and readable description
- * - Accessible, responsive primary CTA linking to #quote
+ * - Accessible, responsive primary CTA linking to the dedicated Quote Page
  * - Fully responsive across mobile, tablet, and desktop viewports
  */
 export default function Hero() {
@@ -23,7 +24,14 @@ export default function Hero() {
               Professional pressure washing and soft washing for homes and businesses in Rock Hill, SC, and surrounding York County communities.
             </p>
             <div className="hero-actions">
-              <a href="#quote" className="hero-cta-btn">
+              <a
+                href="/quote"
+                className="hero-cta-btn"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateTo('/quote');
+                }}
+              >
                 <span>Get a Free Quote</span>
               </a>
             </div>

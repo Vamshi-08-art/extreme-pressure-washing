@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -10,25 +11,40 @@ import ServiceAreas from './components/ServiceAreas';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import MobileActionBar from './components/MobileActionBar';
+import QuotePage from './components/QuotePage';
+import { getCurrentRoute } from './utils/navigation';
 import './App.css';
 
 /**
- * Extreme Pressure Washing Rock Hill - Complete Homepage
+ * Extreme Pressure Washing Rock Hill - Main Application
  *
- * Assembles all 11 homepage sections in coordinated sequence:
- * 1. Header & Navigation (Preserved)
- * 2. Hero Section (Preserved)
- * 3. Our Services (9 Interactive Cards)
- * 4. Why Choose Us (Owner-Operated & 4 Pillars)
- * 5. By the Numbers (Verified Metrics & Credibility)
- * 6. Testimonials (Multi-card Touch & Keyboard Carousel)
- * 7. Request a Free Quote (Full-width Call to Action)
- * 8. Before & After Gallery (2 Independent Interactive Sliders)
- * 9. Service Areas (5 Regional Hubs & Coverage Map)
- * 10. Frequently Asked Questions (14-item Accessible Accordion)
- * 11. Footer (Multi-column Links & Contact Details)
+ * Supports seamless client-side routing between:
+ * - Homepage ('/'): All 10 homepage sections
+ * - Dedicated Quote Page ('/quote'): Request a Free Quote page with embedded Testimonials
+ * Header, Footer, and MobileActionBar persist across all pages.
  */
 function App() {
+  const [currentRoute, setCurrentRoute] = useState(() => {
+    if (typeof window !== 'undefined') return getCurrentRoute();
+    return '/';
+  });
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setCurrentRoute(getCurrentRoute());
+    };
+
+    window.addEventListener('popstate', handleRouteChange);
+    window.addEventListener('hashchange', handleRouteChange);
+
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange);
+      window.removeEventListener('hashchange', handleRouteChange);
+    };
+  }, []);
+
+  const isQuotePage = currentRoute === '/quote';
+
   return (
     <div className="site-layout">
       {/* 1. Navigation Header */}
@@ -36,32 +52,38 @@ function App() {
 
       {/* Main Content Area */}
       <main id="main-content">
-        {/* 2. Hero Section */}
-        <Hero />
+        {isQuotePage ? (
+          <QuotePage />
+        ) : (
+          <>
+            {/* 2. Hero Section */}
+            <Hero />
 
-        {/* 3. Our Services */}
-        <Services />
+            {/* 3. Our Services */}
+            <Services />
 
-        {/* 4. Why Choose Us */}
-        <WhyChooseUs />
+            {/* 4. Why Choose Us */}
+            <WhyChooseUs />
 
-        {/* 5. By the Numbers */}
-        <Statistics />
+            {/* 5. By the Numbers */}
+            <Statistics />
 
-        {/* 6. Testimonials */}
-        <Testimonials />
+            {/* 6. Testimonials */}
+            <Testimonials />
 
-        {/* 7. Request a Free Quote */}
-        <QuoteCTA />
+            {/* 7. Request a Free Quote */}
+            <QuoteCTA />
 
-        {/* 8. Before & After Gallery */}
-        <BeforeAfterGallery />
+            {/* 8. Before & After Gallery */}
+            <BeforeAfterGallery />
 
-        {/* 9. Service Areas */}
-        <ServiceAreas />
+            {/* 9. Service Areas */}
+            <ServiceAreas />
 
-        {/* 10. Frequently Asked Questions */}
-        <FAQ />
+            {/* 10. Frequently Asked Questions */}
+            <FAQ />
+          </>
+        )}
       </main>
 
       {/* 11. Footer */}

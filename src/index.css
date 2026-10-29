@@ -73,8 +73,8 @@
   /* Focus Indicator (WCAG 2.2 compliant outline) */
   --color-focus: #0A8CBF;
 
-  /* Testimonial Section Tokens (Light Theme: warm off-white, white cards, dark charcoal text) */
-  --testimonials-bg: #F9F9F7;
+  /* Testimonial Section Tokens (Light Theme: white background, white cards, dark navy/charcoal text) */
+  --testimonials-bg: #FFFFFF;
   --testimonials-title-color: #012340;
   --testimonials-card-bg: #FFFFFF;
   --testimonials-card-border: #E5E7EB;
@@ -129,8 +129,8 @@
     /* Focus Indicator */
     --color-focus: #4cbbe7;
 
-    /* Testimonial Section Tokens (Dark Theme: deep charcoal green-tinted, muted green cards) */
-    --testimonials-bg: #141C18;
+    /* Testimonial Section Tokens (Dark Theme: modern #222222 background, muted green cards) */
+    --testimonials-bg: #222222;
     --testimonials-title-color: #F3F4F6;
     --testimonials-card-bg: #1E2823;
     --testimonials-card-border: #2B3831;
@@ -182,8 +182,8 @@
   /* Focus Indicator */
   --color-focus: #4cbbe7;
 
-  /* Testimonial Section Tokens (Dark Theme: deep charcoal green-tinted, muted green cards) */
-  --testimonials-bg: #141C18;
+  /* Testimonial Section Tokens (Dark Theme: modern #222222 background, muted green cards) */
+  --testimonials-bg: #222222;
   --testimonials-title-color: #F3F4F6;
   --testimonials-card-bg: #1E2823;
   --testimonials-card-border: #2B3831;
